@@ -102,4 +102,33 @@ class Banco {
 		return $cliente;
 	}
 
+	public function getNomeProduto($nome){
+		$nome = trim($nome);
+		$strsql = "select * from produtos where nome LIKE '%$nome%'";
+
+		$resultados = $this->getResultsBD($strsql);
+	
+		$produtos = array();
+		while ($linha = $resultados->fetch_object()) {
+			$produtos[] = $this->fetchProduto($linha);
+		}
+
+		return $produtos;
+
+}
+
+	public function getProdutosByAleatrio(){
+		$strsql = "select * from produtos order by rand() limit 2";
+
+		$resultados = $this->getResultsBD($strsql);
+	
+		$produtos = array();
+		while ($linha = $resultados->fetch_object()) {
+			$produtos[] = $this->fetchProduto($linha);
+		}
+
+		return $produtos;
+
+}
+
 }

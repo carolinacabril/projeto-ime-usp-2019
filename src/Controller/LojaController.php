@@ -14,8 +14,10 @@ class LojaController extends AbstractController {
 	* @Route("/")
 	*/
 	public function index() {
+		$banco = new Banco();
+		$produtos = $banco->getProdutosByAleatrio();
 		return $this->render('loja/index.html.twig', [
-					    
+				'produtos' => $produtos	    
 		]);
 	}
 
@@ -109,4 +111,10 @@ class LojaController extends AbstractController {
 		
 		return $this->redirectToRoute('app_loja_carrinho');
 	}
+
+	
+	
+
+
+
 }

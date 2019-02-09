@@ -33,8 +33,8 @@
           <a class="nav-link" href="/carrinho">Meu Carrinho</a>
         </li>
       </ul>
-      <form method="post" action="/busca" class="form-inline mt-2 mt-md-0">
-        <input class="form-control mr-sm-2" type="text" placeholder="Buscar produto" aria-label="Buscar">
+      <form method="post" action="/busca"class="form-inline mt-2 mt-md-0">
+        <input class="form-control mr-sm-2" name="buscar"type="text" placeholder="Buscar produto" aria-label="Buscar">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form>
     </div>
@@ -42,17 +42,25 @@
 </header>
 
 
-
-
-
 <div class="container ">
-<h2>Produtos em Destaque<h2>
-<div class="container">
 
-<a href="/produto/1">
-<img src="/images/corsa.jpg" width="200">
-</a>
-</div>
+
+{% for produto in produtos%}
+
+<h1 style="margin-top:100px">Lista de produtos </h1> <br />
+
+<h3>{{produto.nome}}</h3>
+<img src="/images/{{produto.imagem}}" width="300">
+<br />
+{{produto.descricao}}
+<br /><br />
+
+R$ {{produto.preco}}
+<br />
+<a href="/produto/{{produto.id}}">Ver Detalhes</a>.
+
+{% endfor %}
+
 </div>
 
 

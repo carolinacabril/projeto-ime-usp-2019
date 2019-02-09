@@ -36,9 +36,14 @@ class ProdutoController extends AbstractController {
 	/**
 	* @Route("/busca")
 	*/
-	public function buscar() {
+	public function buscar(Request $request) {
+		$nome = $request->request->get('buscar');
+		$banco = new Banco();
+		$produtos = $banco->getNomeProduto($nome);
+		
 		return $this->render('produto/buscar.html.twig', [
-					    
+				'produtos' => $produtos,
+				'buscar' => $nome	    
 		]);
 	}
 
